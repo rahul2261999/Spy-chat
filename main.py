@@ -1,41 +1,44 @@
-print 'hello'
+from spy_detail import spy_name, spy_salutation, spy_age, spy_rating
 print 'lets start'
 
-# spy details
-spy_name = raw_input("welcome to spy chat tell your name first\t")
+question = "Do you want to continue as"+" "+ spy_salutation + " " + spy_name +" "+"(Y/N)\t"
+existing = input(question)
 
-# checking spy eligibility
-if len(spy_name) > 0:
-   print "welcome"+" " + spy_name + " " + "Glad to see you here "
-   spy_salutation = raw_input("Should I call you Mr. or Miss?")
-   spy_name = spy_salutation + " " + spy_name
-   print "alright" + " " + spy_name + '' + " I'd like to know a little bit more about you."
+def start_chat(spy_name, spy_age, spy_rating):
 
-   spy_age = 0
-   spy_rating = 0
-   spy_is_online = False
+    current_status_message = None
 
-   spy_age = input("enter you age")
+    spy_name = spy_salutation + " " + spy_name
 
-   spy_age = int(spy_age)
+    if spy_age > 18 and spy_age < 60:
+        print "Authentication complete.... \n" + "welcome" + " " + spy_name + " " + "age" + " " + str(
+            spy_age) + " " + "spy rating" + " " \
+              + str(spy_rating) + " ""glad to see you active again"
 
-#checking spy age
-
-if 12 < spy_age < 60:
-    spy_rating=input("what is you rating")
-    if spy_rating > 4.5:
-        print "great ace"
-    elif spy_rating > 4 and spy_rating < 4.5:
-        print "you are good spy"
-    elif spy_rating > 3 and spy_rating < 4:
-        print "you can do better"+" "+ spy_name
+        show_menu = True
     else:
-        print "we can also use somebody to help in office"
+        print "sorry you are not of a correct age for a spy"
 
-    spy_is_online = True
-    #printing the details of spy
-    print "Authentication complete.... \n" + "welcome"+" "+ spy_name + " "+"age" + " "+ str(spy_age) +" "+ "spy rating"+ " "\
-          +str(spy_rating)+" ""glad to see you active"
 
+if existing == "Y":
+    start_chat(spy_name,spy_age,spy_rating)
 else:
-     print "sorry you are not of a correct age to be a spy"
+    spy_name = ''
+    spy_salutation = ''
+    spy_age = 0.0
+    spy_rating = 0.0
+    spy_is_online = False
+
+    spy_name = raw_input("enter your name first")
+
+    if len(spy_name) > 0:
+
+       print "welcome"+" " + spy_name + " " + "Glad to see you here "
+       spy_salutation = raw_input("Should I call you Mr. or Miss?")
+       spy_name = spy_salutation + " " + spy_name
+       print "alright" + " " + spy_name + '' + " I'd like to know a little bit more about you."
+       spy_age = input("enter you age")
+       spy_is_online = True
+       start_chat(spy_name,spy_age,spy_rating)
+    else:
+         print "sorry you are not of a correct age to be a spy"
