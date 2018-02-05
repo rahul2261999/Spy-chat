@@ -1,8 +1,8 @@
 from spy_detail import spy
-
-from spy_detail import spy
+from steganography.steganography import Steganography
+from datetime import datetime
 print 'lets start'
-STATUS_MESSAGE = ["HELLO","Available"]
+STATUS_MESSAGE = ["HELLO", "Available"]
   # STATUS
 def add_status(current_status_message):
     update_status_message = None
@@ -51,7 +51,7 @@ def add_friend():
         'rating': 0.0
     }
     new_friend['name'] = input("Please add your friend's name: ")
-    new_friend['salutation'] = raw_input'("Are they Mr. or Ms.:")
+    new_friend['salutation'] = raw_input("Are they Mr. or Ms.:")
 
     new_friend['name'] = new_friend['salutation'] + " " + new_friend['name']
 
@@ -79,12 +79,50 @@ def select_friend():
 
     return friend_choice_position
 
+                # MESSAGE SENDING
+
+def send_message():
+
+    friend_choice = select_friend()  # CALLING FUNCTION select_friend
+
+    original_image = input("What is the name of the image?")
+    output_path = " "
+    text = input("What do you want to say? ")
+    Steganography.encode(original_image, output_path, text)
+
+    new_chat = {
+        "message": text,
+        "time": datetime.now(),
+        "sent_by_me": True
+    }
+
+    friends[friend_choice]['chats'].append(new_chat)
+
+    print "Your secret message image is ready!"
+
+
+
+def read_message():
+
+    sender = select_friend() #calling function select_friend
+
+    output_path = input("What is the name of the file?")
+
+    secret_text = Steganography.decode(output_path)
+
+    new_chat = {
+        "message": secret_text,
+        "time": datetime.now(),
+        "sent_by_me": False
+    }
+
+    friends[sender]['chats'].append(new_chat)
+
+    print "Your secret message has been saved!"
 
 
 
 
-
-     # FUNCTION FOR CHAT
 
 def start_chat(spy):
 
@@ -92,7 +130,7 @@ def start_chat(spy):
 
     spy_name = spy['salutation'] + " " + spy['name']
 
-    if spy['age'] > 18 and spy['age'] < 60:
+    if spy['age'] > 12 and spy['age'] < 60:
 
         print "Authentication complete.... \n" + "welcome" + " " + spy['name'] + " " + "age" + " " + str(
             spy['age']) + " " + "spy rating" + " " \
@@ -101,7 +139,8 @@ def start_chat(spy):
         show_menu = True
 
         while show_menu:
-            menu_choices = "What do you want to do? \n 1. Add a status update \n 2. Add a friend \n 3. Send a secret message \n 4. Read a secret message \n 5. Read Chats from a user \n 6. Close Application \n"
+            menu_choices = "What do you want to do? \n 1. Add a status update \n 2. Add a friend \n 3. Send a secret message \n 4. Read a secret message \n " \
+                           "5. store user data \n 6. Read Chats from a user \n 7. Exit \n"
             menu_choice = input(menu_choices)
 
             if menu_choice == 1:
@@ -112,22 +151,32 @@ def start_chat(spy):
 
                 print 'You have %d friends' % (number_of_friends)
 
+            elif menu_choice == 3 :
+
+                send_message()
+
+            elif menu_choice == 4:
+
+                read_message()
+
+            elif menu_choice == 5:
+
+                pass
+
+            elif menu_choice == 6:
+
+                pass
+
+            elif menu_choice == 7:
+
+                pass
+            else: show_menu == False
     else:
 
         print "sorry you are not of a correct age for a spy"
 
 
                     # new friend details
-
-friends_name = []
-
-friends_age = []
-
-friends_rating = []
-
-friends_is_online = []
-
-
 
 question = "Do you want to continue as"+" "+ spy['salutation'] + " " + spy['name'] +" "+"(Y/N)?"
 existing = input(question)
