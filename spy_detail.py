@@ -2,8 +2,15 @@ spy = {
      'name':'rahul',
      'salutation' : 'Mr.',
      'age' : 20,
-     'rating' : 3.2,
+     'rating' : 2.2,
      'is_online' : True
+}
+
+new_friend = {
+     'name': '',
+     'salutation': '',
+     'age': 0,
+     'rating': 0.0
 }
 
 friends = [
@@ -12,7 +19,7 @@ friends = [
           'salutation' : 'Mr.',
           'rating' : 3.9,
           'age' : 15,
-          'chat' : []
+          'chat' :[]
 
      },
 
@@ -22,7 +29,7 @@ friends = [
           'salutation' : 'Mr.',
           'rating' : 4,
           'age' : 18,
-          'chat' : []
+          'chat' :[]
 
 
      },
