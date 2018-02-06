@@ -42,7 +42,6 @@ def add_status(current_status_message):
 
     # FUNCTION FOR ADDING  NEW FRIEND
 
-friends = []
 def add_friend():
     new_friend = {
         'name': '',
