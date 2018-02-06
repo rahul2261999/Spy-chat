@@ -1,9 +1,26 @@
 from spy_detail import spy, friends, new_friend
 from steganography.steganography import Steganography
 from datetime import datetime
-print 'lets start'
+import csv
+from colorama import Fore, Style
+
+
+
+# color classes
+class bcolors:
+    HEADER = Fore.BLUE
+    OKBLUE = Fore.BLUE
+    OKGREEN = Fore.BLUE
+    WARNING = Fore.LIGHTBLUE_EX
+    FAIL = Fore.RESET
+    ENDC = Style.BRIGHT
+    BOLD = Fore.GREEN
+    UNDERLINE = Style.DIM
+
+
+# STATUS
 STATUS_MESSAGE = ["HELLO", "Available"]
-  # STATUS
+
 def add_status(current_status_message):
     update_status_message = None
 
@@ -17,7 +34,7 @@ def add_status(current_status_message):
     default = input("do you want to select older status(Y/N)\t")
 
     if default.upper() == "N":
-        new_status_message = raw_input("enter your status message")
+        new_status_message = raw_input(bcolors.BOLD+"enter your status message")
 
         if len(new_status_message) > 0:
 
@@ -48,8 +65,8 @@ def add_status(current_status_message):
 
 def add_friend():
 
-    new_friend['name'] = raw_input("Please add your friend's name:\t ")
-    new_friend['salutation'] = raw_input("Are they Mr. or Ms.:\t")
+    new_friend['name'] = raw_input(bcolors.HEADER+"Please add your friend's name:\t ")
+    new_friend['salutation'] = raw_input(bcolors.OKBLUE+"Are they Mr. or Ms.:\t")
 
     new_friend['name'] = new_friend['salutation'] + " " + new_friend['name']
 
@@ -65,6 +82,17 @@ def add_friend():
 
 
     return len(friends)
+
+
+   # storing data
+
+
+
+
+
+
+
+        #choosing friend
 
 def select_friend():
     item_num = 0
@@ -108,7 +136,7 @@ def read_message():
     output_path = raw_input("What is the name of the file?")
 
     secret_text = Steganography.decode(output_path)
-    print secret_text
+    print bcolors.BOLD+secret_text
 
     new_chat = {
         "message": secret_text,
@@ -139,7 +167,7 @@ def start_chat(spy):
         show_menu = True
 
         while show_menu:
-            menu_choices = "What do you want to do? \n 1. Add a status update \n 2. Add a friend \n 3. Send a secret message \n " \
+            menu_choices = bcolors.OKGREEN+"What do you want to do? \n 1. Add a status update \n 2. Add a friend \n 3. Send a secret message \n " \
                            "4. Read a secret message \n Enter your Choice\t"
 
             menu_choice = input(menu_choices)
@@ -167,8 +195,8 @@ def start_chat(spy):
 
 
                     # new friend details
-
-question = "Do you want to continue as"+" "+ spy['salutation'] + " " + spy['name'] +" "+"(Y/N)?\t"
+print 'lets start'
+question = " Do you want to continue as"+" "+ spy['salutation'] + " " + spy['name'] +" "+"(Y/N)?\t"
 existing = input(question)
 
 if existing .upper()== "Y":
@@ -186,7 +214,7 @@ else:
 
     # NEW SPY DETAILS
 
-    spy_name = raw_input("enter your name first")
+    spy_name = raw_input(bcolors.HEADER+"enter your name first")
 
     if len(spy['name']) > 0:
 
@@ -205,4 +233,4 @@ else:
 
     else:
 
-         print "sorry you are not of a correct age to be a spy"
+         print bcolors.HEADER+"sorry you are not of a correct age to be a spy"
