@@ -1,4 +1,4 @@
-from spy_detail import spy
+from spy_detail import spy, friends
 from steganography.steganography import Steganography
 from datetime import datetime
 print 'lets start'
@@ -71,7 +71,7 @@ def add_friend():
 def select_friend():
     item_num = 0
     for friend in friends:
-        print "str(item_num+1)"+ friends['name']
+        print '%d. %s'%(item_num +1), friend['name']
         item_num = item_num + 1
     s = input("select friend index ")
 
@@ -85,9 +85,12 @@ def send_message():
 
     friend_choice = select_friend()  # CALLING FUNCTION select_friend
 
-    original_image = input("What is the name of the image?")
-    output_path = " "
-    text = input("What do you want to say? ")
+    original_image = raw_input("What is the name of the image?") # enter input path of image
+
+    output_path = raw_input('enter')                   # enter output path of image
+
+    text = raw_input("What do you want to say? ")
+
     Steganography.encode(original_image, output_path, text)
 
     new_chat = {
@@ -99,8 +102,6 @@ def send_message():
     friends[friend_choice]['chats'].append(new_chat)
 
     print "Your secret message image is ready!"
-
-
 
 def read_message():
 
@@ -140,7 +141,8 @@ def start_chat(spy):
 
         while show_menu:
             menu_choices = "What do you want to do? \n 1. Add a status update \n 2. Add a friend \n 3. Send a secret message \n 4. Read a secret message \n " \
-                           "5. store user data \n 6. Read Chats from a user \n 7. Exit \n"
+                           "5. store user data \n 6. Read Chats from a user \n 7. Exit \n Enter your Choice"
+
             menu_choice = input(menu_choices)
 
             if menu_choice == 1:
