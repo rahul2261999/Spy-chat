@@ -87,12 +87,7 @@ def add_friend():
    # storing data
 
 
-
-
-
-
-
-        #choosing friend
+#choosing friend
 
 def select_friend():
     item_num = 0
@@ -105,7 +100,8 @@ def select_friend():
 
     return friend_choice_position
 
-                # MESSAGE SENDING
+
+# MESSAGE SENDING
 
 def send_message():
 
@@ -194,43 +190,45 @@ def start_chat(spy):
         print "sorry you are not of a correct age for a spy"
 
 
-                    # new friend details
-print 'lets start'
-question = " Do you want to continue as"+" "+ spy['salutation'] + " " + spy['name'] +" "+"(Y/N)?\t"
-existing = input(question)
+if name == __main__:
 
-if existing .upper()== "Y":
+                        # new friend details
+    print 'lets start'
+    question = " Do you want to continue as"+" "+ spy['salutation'] + " " + spy['name'] +" "+"(Y/N)?\t"
+    existing = input(question)
 
-    start_chat(spy)   # FUNCTION CALLING
+    if existing .upper()== "Y":
 
-else:
-
-
-    spy_name = ''
-    spy_salutation = ''
-    spy_age = 0.0
-    spy_rating = 0.0
-    spy_is_online = False
-
-    # NEW SPY DETAILS
-
-    spy_name = raw_input(bcolors.HEADER+"enter your name first")
-
-    if len(spy['name']) > 0:
-
-       spy['salutation'] = raw_input("Should I call you Mr. or Miss? \t")
-
-       spy['name'] = spy['salutation']+" "+spy['name']
-
-       print "alright" + " " + spy['name'] + '' + " I'd like to know a little bit more about you."
-
-       spy['age']= input("enter you age\t")
-
-       spy['is_online'] = True
-
-       start_chat(spy)
-
+        start_chat(spy)   # FUNCTION CALLING
 
     else:
 
-         print bcolors.HEADER+"sorry you are not of a correct age to be a spy"
+
+        spy_name = ''
+        spy_salutation = ''
+        spy_age = 0.0
+        spy_rating = 0.0
+        spy_is_online = False
+
+        # NEW SPY DETAILS
+
+        spy_name = raw_input(bcolors.HEADER+"enter your name first")
+
+        if len(spy['name']) > 0:
+
+           spy['salutation'] = raw_input("Should I call you Mr. or Miss? \t")
+
+           spy['name'] = spy['salutation']+" "+spy['name']
+
+           print "alright" + " " + spy['name'] + '' + " I'd like to know a little bit more about you."
+
+           spy['age']= input("enter you age\t")
+
+           spy['is_online'] = True
+
+           start_chat(spy)
+
+
+        else:
+
+             print bcolors.HEADER+"sorry you are not of a correct age to be a spy"
